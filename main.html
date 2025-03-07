@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Map with Pollution Info (HTML & CSS Only)</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      font-family: courier;
+      background-image: url('basemap.jpg');
+      background-size: 7500px 6000px;
+      background-repeat: no-repeat;
+      background-position: top left;
+      min-height: 6000px;
+      min-width: 7500px;
+    }
+    h1 {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+    /* Each icon and its info will be wrapped in a container */
+    .icon-container {
+      position: absolute;
+    }
+    .pollution-icon {
+      display: block;
+    }
+    /* The info box is positioned to the right of its icon */
+    .pollution-info {
+      position: absolute;
+      left: calc(100% + 5px); /* places the box 5px to the right of the icon */
+      top: 0;
+      width: 300px;
+      background: white;
+      border: 1px solid black;
+      padding: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .pollution-info .title {
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    /* Positioning for each icon container (adjust these values as needed) */
+    #laundryshop-container { top: 1250px; left: 2450px; }
+    #paintshop-container   { top: 800px; left: 2650px; }
+    #gasstation-container  { top: 350px; left: 5600px; }
+    #distributioncenter-container { top: 4850px; left: 5px; }
+    #poultry-container     { top: 3800px; left: 500px; }
+    #bloodcenter-container { top: 4800px; left: 2000px; }
+    #tree-container        { top: 1000px; left: 1300px; }
+    #tree2-container       { top: 5000px; left: 1300px; }
+    #tree3-container       { top: 2600px; left: 5600px; }
+    #highway-container     { top: -1px; left: 6580px; }
+    #trashcan-container    { top: 800px; left: 900px; }
+    #airplane-container    { top: 2500px; left: 5000px; }
+    #cigarett-container    { top: 1250px; left: 2300px; }
+    #river-container       { top: 4400px; left: 2800px; }
+  </style>
+</head>
+<body>
+  <h1>290 Smith St., Providence, Rhode Island 02908 on July 21</h1>
+
+  <!-- Laundry Shop -->
+  <div id="laundryshop-container" class="icon-container">
+    <img src="laundryshop.png" alt="Laundry Shop" class="pollution-icon" width="250" height="170">
+    <div class="pollution-info">
+      <div class="title">Coin-Up Laundry Store</div>
+      <strong>Pollution Source</strong>: Detergent Waste<br>
+      <strong>Composition</strong>: Perchloroethylene<br>
+      <strong>Particle Size</strong>: 0.5 - 50 µm<br>
+      <strong>Travel Distance</strong>: 10 - 50 miles
+    </div>
+  </div>
+
+  <!-- Paint Shop -->
+  <div id="paintshop-container" class="icon-container">
+    <img src="paintshop.png" alt="Paint Shop" class="pollution-icon" width="372" height="328">
+    <div class="pollution-info">
+      <div class="title">The Paint Shoppes</div>
+      <strong>Pollution Source</strong>: Paint<br>
+      <strong>Composition</strong>: VOC (Volatile Organic Compounds)<br>
+      <strong>Particle Size</strong>: 1 - 10 µm<br>
+      <strong>Travel Distance</strong>: >200 miles
+    </div>
+  </div>
+
+  <!-- Gas Station -->
+  <div id="gasstation-container" class="icon-container">
+    <img src="gasstation.png" alt="Gas Station" class="pollution-icon" width="342" height="278">
+    <div class="pollution-info">
+      <div class="title">Gako Gas Station</div>
+      <strong>Pollution Source</strong>: Fuel Emissions (Benzene, Toluene, Ethylbenzene, Xylene - BTEX)<br>
+      <strong>Composition</strong>: VOC<br>
+      <strong>Particle Size</strong>: 0.0001197 µm<br>
+      <strong>Travel Distance</strong>: >10 miles
+    </div>
+  </div>
+
+  <!-- Distribution Center -->
+  <div id="distributioncenter-container" class="icon-container">
+    <img src="distributioncenter.png" alt="Distribution Center" class="pollution-icon" width="1134" height="842">
+    <div class="pollution-info">
+      <div class="title">Coca-Cola Distribution Center</div>
+      <strong>Pollution Source</strong>: Trucks &amp; Forklifts<br>
+      <strong>Composition</strong>: NOx (Nitrogen Dioxide)<br>
+      <strong>Particle Size</strong>: 0.0001197 µm<br>
+      <strong>Travel Distance</strong>: >100 miles
+    </div>
+  </div>
+
+  <!-- Poultry -->
+  <div id="poultry-container" class="icon-container">
+    <img src="poultry.png" alt="Poultry" class="pollution-icon" width="1208" height="766">
+    <div class="pollution-info">
+      <div class="title">Warwick Poultry</div>
+      <strong>Pollution Source</strong>: Butchering &amp; Processing<br>
+      <strong>Composition</strong>: Nitrous Oxide (N₂O), Ammonia, Methane, Dust (skin fragments, feed particles)<br>
+      <strong>Particle Size</strong>: 1 - 100 µm<br>
+      <strong>Travel Distance</strong>: 100 - 1000 miles
+    </div>
+  </div>
+
+  <!-- Blood Center -->
+  <div id="bloodcenter-container" class="icon-container">
+    <img src="bloodcenter.png" alt="Blood Center" class="pollution-icon" width="1548" height="854">
+    <div class="pollution-info">
+      <div class="title">Blood Center</div>
+      <strong>Pollution Source</strong>: Biological Waste<br>
+      <strong>Composition</strong>: Bloodborne Pathogens (Hepatitis B, Hepatitis C, HIV), Chemical Disinfectants (Formaldehyde, Glutaraldehyde), Pharmaceuticals, Microorganisms<br>
+      <strong>Particle Size</strong>: 0.02 - 1 µm (viruses), 0.5 - 5 µm (bacteria), 10 - 100 µm (dried blood, tissue fragments)<br>
+      <strong>Travel Distance</strong>: Varies
+    </div>
+  </div>
+
+  <!-- Tree -->
+  <div id="tree-container" class="icon-container">
+    <img src="tree.png" alt="Tree" class="pollution-icon" width="72" height="92">
+    <div class="pollution-info">
+      <div class="title">Trees</div>
+      <strong>Pollution Source</strong>: Natural Emissions<br>
+      <strong>Composition</strong>: Isoprene, Monoterpenes, Methanol, Acetone, Pollen, Spores<br>
+      <strong>Particle Size</strong>: 10 - 100 µm<br>
+      <strong>Travel Distance</strong>: &gt;20 miles
+    </div>
+  </div>
+
+  <!-- Tree 2 -->
+  <div id="tree2-container" class="icon-container">
+    <img src="tree_2.png" alt="Tree 2" class="pollution-icon" width="378" height="292">
+    <div class="pollution-info">
+      <div class="title">Trees</div>
+      <strong>Pollution Source</strong>: Natural Emissions<br>
+      <strong>Composition</strong>: Isoprene, Monoterpenes, Methanol, Acetone, Pollen, Spores<br>
+      <strong>Particle Size</strong>: 10 - 100 µm<br>
+      <strong>Travel Distance</strong>: &gt;20 miles
+    </div>
+  </div>
+
+  <!-- Tree 3 -->
+  <div id="tree3-container" class="icon-container">
+    <img src="tree_3.png" alt="Tree 3" class="pollution-icon" width="534" height="730">
+    <div class="pollution-info">
+      <div class="title">Trees</div>
+      <strong>Pollution Source</strong>: Natural Emissions<br>
+      <strong>Composition</strong>: Isoprene, Monoterpenes, Methanol, Acetone, Pollen, Spores<br>
+      <strong>Particle Size</strong>: 10 - 100 µm<br>
+      <strong>Travel Distance</strong>: &gt;20 miles
+    </div>
+  </div>
+
+  <!-- Highway -->
+  <div id="highway-container" class="icon-container">
+    <img src="highway.png" alt="Highway" class="pollution-icon" width="984" height="1191">
+    <div class="pollution-info">
+      <div class="title">I-95 Highway</div>
+      <strong>Pollution Source</strong>: Road Construction &amp; Traffic<br>
+      <strong>Composition</strong>: Particulate Matter, Polycyclic Aromatic Hydrocarbons (PAHs), Heavy Metals<br>
+      <strong>Particle Sizes</strong>:<br>
+      - Dust: 0.1 - 100 µm<br>
+      - Diesel Exhaust Particles: 0.01 - 0.5 µm<br>
+      - Silica Dust: 0.5 - 5 µm<br>
+      <strong>Travel Distance</strong>: &gt;100 miles
+    </div>
+  </div>
+
+  <!-- Trashcan -->
+  <div id="trashcan-container" class="icon-container">
+    <img src="trashcan.png" alt="Trashcan" class="pollution-icon" width="114" height="173">
+    <div class="pollution-info">
+      <div class="title">Street Trashcan</div>
+      <strong>Pollution Source</strong>: Rubbish Decomposition<br>
+      <strong>Composition</strong>: Dioxins, Benzene, PCBs (Polychlorinated Biphenyls)<br>
+      <strong>Particle Size</strong>: 75 µm<br>
+      <strong>Travel Distance</strong>: Persistent in environment
+    </div>
+  </div>
+
+  <!-- Airplane -->
+  <div id="airplane-container" class="icon-container">
+    <img src="airplane.png" alt="Airplane" class="pollution-icon" width="250" height="150">
+    <div class="pollution-info">
+      <div class="title">Airplane</div>
+      <strong>Pollution Source</strong>: Jet Engine Emissions<br>
+      <strong>Composition</strong>: Carbon Dioxide (CO₂), Nitrogen Oxides (NOx), Sulfur Oxides (SOx), Particulate Matter<br>
+      <strong>Particle Size</strong>: 0.000232 µm<br>
+      <strong>Travel Distance</strong>: &gt;100 miles
+    </div>
+  </div>
+
+  <!-- Cigarette -->
+  <div id="cigarett-container" class="icon-container">
+    <img src="cigarett.png" alt="Cigarette" class="pollution-icon" width="82" height="48.5">
+    <div class="pollution-info">
+      <div class="title">Smoking Cigarette</div>
+      <strong>Pollution Source</strong>: Tobacco Combustion<br>
+      <strong>Composition</strong>: Nicotine, Tar, Carbon Monoxide, Particulate Matter<br>
+      <strong>Particle Size</strong>: ~0.5 µm<br>
+      <strong>Travel Distance</strong>: &gt;30 miles
+    </div>
+  </div>
+
+  <!-- River -->
+  <div id="river-container" class="icon-container">
+    <img src="river.png" alt="River" class="pollution-icon" width="4501" height="1893">
+    <div class="pollution-info">
+      <div class="title">River</div>
+      <strong>Pollution Source</strong>: Industrial and Agriculture Discharge<br>
+      <strong>Composition</strong>: Nitrates, Phosphates, Pesticides, Heavy Metals<br>
+      <strong>Particle Size</strong>: 1 - 50 µm<br>
+      <strong>Travel Distance</strong>: Up to 100 miles downstream
+    </div>
+  </div>
+
+</body>
+</html>

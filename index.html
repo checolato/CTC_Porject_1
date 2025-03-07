@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- make sure things display in the size that u originally place them -->
+    <title>AirPollutioninProv</title>  <!-- title appear at the tab -->
+    <style>
+        body {
+            margin: 0; /* remove defalut margin and set the margin to 0 */ 
+            height: 100vh; /* make sure the body is 100% fill viewer browser */ 
+            display: flex; /* set body to flexible layout */ 
+            justify-content: center; /* make everything horizontally in the center */ 
+            align-items: center; /* this one is vertical direction, also in the center */ 
+            font-family: courier; 
+            text-align: center; /* make sure texts are align in the center */ 
+        }
+
+        h1 {
+            margin-bottom: 20px; /* creates white space between two elements */ 
+            font-size: 40px;
+        }
+
+        /* toggle switch codes from W3 School */ 
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            visibility: hidden; /* make the toggle invisible at first */ 
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1 id="demo"></h1> <!-- make h1 has effect at script section below -->
+        <div class="toggle-container" id="toggleContainer"> 
+            <span>Ready</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggleSwitch">
+                <span class="slider"></span>
+            </label>
+            <span>Go</span>
+        </div>
+    </div>
+
+    <script>
+        var i = 0;/* typewritter effect here! */ 
+        var txt = 'Are you ready to see?'; 
+        var speed = 150;/* greater number, slower */ 
+
+        
+        window.onload = function() {
+            typeWriter();
+        };
+
+        function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("demo").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                document.getElementById("toggleContainer").style.visibility = "visible";
+            }
+        }
+
+        document.getElementById("toggleSwitch").addEventListener("change", function () {
+            if (this.checked) {
+                window.location.href = "main.html"; /* direct to the next page */ 
+            }
+        });
+    </script>
+</body>
+
+</html>
